@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiLogIn } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import './styles.css';
 
 import api from '../../services/api';
@@ -17,14 +16,14 @@ export default function Logon(){
         e.preventDefault();
 
         try{
-          const response = await api.post('rota', { user, password });
+          const response = await api.post('sessions', { user, password });
           
           localStorage.setItem('userId', response.data.id);
-          localStorage.setItem('userName', user)
+          localStorage.setItem('userName', user);
 
-          history.push('/vendas');
+          history.push('/newinventory');
         } catch (err) {
-            alert('Falha no login, tente novamente');
+            alert('Usuário e/ou senha inválidos');
         }
     }
 
@@ -43,15 +42,12 @@ export default function Logon(){
                     />
                     <input 
                         placeholder="Senha" 
+                        type="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
                     <button className="button" type="submit">Entrar</button>
 
-                    <Link className="back-link" to="/register">
-                        <FiLogIn size={16} color="#E02041"/>
-                        Não tenho cadastro
-                    </Link>
                 </form>
             </section>
 

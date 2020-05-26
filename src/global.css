@@ -13,7 +13,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-input, button, textarea, select, option {
+input, button, textarea, select, option, label {
     font: 400 18px Roboto, sans-serif;
 }
 
@@ -28,6 +28,12 @@ form input, select, option {
     border: 1px solid #dcdce6;
     border-radius: 8px;
     padding: 0 24px;
+}
+
+form label {
+    height: 60px;
+    color: #333;
+    padding: 0 0 0 24px;
 }
 
 .button {

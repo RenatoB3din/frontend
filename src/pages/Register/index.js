@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 import './styles.css';
@@ -30,9 +29,9 @@ export default function Register() {
         };
 
         try{
-            const response = await api.post('rotausuarios', data);
+            const response = await api.post('users', data);
 
-            alert(`Seu Usuário é: ${response.data.user} \n Sua senha é: ${response.data.password}`);
+            alert(`Seu Usuário é: ${response.data.id}`);
 
             history.push('/');
          } catch (err) {
@@ -49,10 +48,6 @@ export default function Register() {
                     <h1>Cadastro</h1>
                     <p>Faça seu cadastro, entre na plataforma e ajude-nos a crescer cada vez mais.</p>
 
-                    <Link className="back-link" to="/">
-                        <FiArrowLeft size={16} color="#E02041"/>
-                        Não tenho cadastro
-                    </Link>
                 </section>
                 
                 <form onSubmit={handleRegister}>
@@ -91,6 +86,8 @@ export default function Register() {
                             value={perfil}
                             onChange={e => setPerfil(e.target.value)}
                         >
+                            <option value="" data-default disabled selected></option>
+
                             <option                  
                                 value="Vendedor"
                             >Vendedor</option>
