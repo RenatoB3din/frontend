@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import TableInventory from '../../components/InventoryTable/TabelaProdutos'
 import api from '../../services/api';
 import './styles.css';
 
@@ -33,13 +34,35 @@ export default function InventoryMovement() {
         };
 
         try{
-            const response = await api.post('inventory', data);
+            await api.post('inventory', data);
 
 
          } catch (err) {
             alert('Erro no cadastro, tente novamente.');
          }
     }
+
+
+    async function handleInventoryTemporary(e) {
+        e.preventDefault(); // Não atualiza a pág ao dar submit
+
+        const data = {
+            produto,
+            quantidade,
+            valor,
+            lote,
+            validade
+        };
+
+        try{
+            await api.post('inventorytemporary', data);
+
+
+         } catch (err) {
+            alert('Erro na listagem do produto, tente novamente.');
+         }
+    }
+
 
     return (
         <div className="movinventory-container">
@@ -135,9 +158,18 @@ export default function InventoryMovement() {
                         </select>
                         </fieldset>
                         </div>
-                        
 
-                        <div className="input-group">
+                        <button id="realizarMovimento" className="button" type="submit">Realizar Movimento</button>
+                    </form>
+
+
+
+
+
+
+                    <div id="parteProduto">
+                    <form onSubmit={handleInventoryTemporary}>
+                    <div className="input-group">
                         <fieldset>
                         <legend>Produto</legend>
                         <select 
@@ -211,13 +243,14 @@ export default function InventoryMovement() {
                         </div>
 
                         <div className="operacaoProduto">
-                            <button id="btn_add">Adicionar Produto</button>
+                            <button id="btn_add" type="submit">Adicionar Produto</button>
 
-                            <button id="btn_cancel">Cancelar Operação</button>
+                            <button id="btn_cancel" >Cancelar Operação</button>
                         </div>
+                        </form>
 
-                        <button className="button" type="submit">Realizar Movimento</button>
-                    </form>
+                        <TableInventory></TableInventory>
+                        </div>
                 </section>
             </div>
         </div>

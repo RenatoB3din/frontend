@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
 
 import api from '../../services/api';
@@ -46,6 +46,10 @@ export default function Logon(){
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                     />
+
+                    <div className="rec_senha">
+                        <Link className="back-link" to="/register">Esqueceu sua senha?</Link>
+                    </div>
                     <button className="button" type="submit">Entrar</button>
 
                 </form>

@@ -63,6 +63,7 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .movinventory-container .content form .operacaoProduto button{
@@ -115,4 +116,13 @@
 .movinventory-container .content form fieldset{
     border: 0;
     margin-left: 8px;
+}
+
+#realizarMovimento{
+    margin-top: 400px;
+}
+
+#parteProduto{
+    margin-top: -450px;
+    padding-bottom: 150px;
 }
