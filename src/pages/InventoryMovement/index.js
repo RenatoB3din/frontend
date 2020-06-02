@@ -6,7 +6,7 @@ import './styles.css';
 
 
 export default function InventoryMovement() {
-    const [nf, setNf] = useState('');
+    const [nf, setNf] = useState('');                              
     const [tipomovimento, setTipomovimento] = useState('');
     const [datanf, setDatanf] = useState('');
     const [fornecedor, setFornecedor] = useState('');
@@ -18,9 +18,9 @@ export default function InventoryMovement() {
     const [imagemnf, setImagemnf] = useState('');
 
     async function handleInventory(e) {
-        e.preventDefault(); // Não atualiza a pág ao dar submit
+        e.preventDefault();                 // Não atualiza a página ao dar submit
 
-        const data = {
+        const data = {                      // Dados armazanados via input para o POST!
             nf,
             tipomovimento,
             datanf,
@@ -34,7 +34,7 @@ export default function InventoryMovement() {
         };
 
         try{
-            await api.post('inventory', data);
+            await api.post('inventory', data);               // POST na API com o ENDPOINT
 
 
          } catch (err) {
@@ -66,41 +66,44 @@ export default function InventoryMovement() {
 
     return (
         <div className="movinventory-container">
-            <div className="content">
-                <section>
-                    <h1>MOVIMENTAÇÃO DE ESTOQUE</h1>
+        <div className="content">
+            <section>
+                <h1>MOVIMENTAÇÃO DE ESTOQUE</h1>
 
-                    <form onSubmit={handleInventory}>
+                <form onSubmit={handleInventory}>
 
-                    <div>
-                        <fieldset>
-                        <legend>Tipo de Movimento</legend>
-                            <select 
-                                value={tipomovimento}
-                                onChange={e => setTipomovimento(e.target.value)}
-                            >
-                                <option value="" data-default disabled selected></option>
+                <div>
 
-                                <option                  
-                                    value="Compra"
-                                    >Compra
-                                </option>
+                <fieldset>
+                    <legend>Tipo de Movimento</legend>
+                        <select 
+                            value={tipomovimento}
+                            onChange={e => setTipomovimento(e.target.value)}
+                        >
+                            <option value="" data-default disabled selected></option>
 
-                                <option
-                                    value="DevolucaooFornecedor"
-                                    >Devolução Fornecedor
-                                </option>
+                            <option                  
+                                value="Compra"
+                                >Compra
+                            </option>
 
-                                <option
-                                    value="DevolucaoCliente"
-                                    >Devolução Cliente
-                                </option>
-                            </select>
-                        </fieldset>
-                        </div>
+                            <option
+                                value="DevolucaooFornecedor"
+                                >Devolução Fornecedor
+                            </option>
+
+                            <option
+                                value="DevolucaoCliente"
+                                >Devolução Cliente
+                            </option>
+                        </select>
+                </fieldset>
+
+                    </div>
                     
                     <div className="input-group">
-                        <fieldset>
+                    
+                    <fieldset>
                         <legend>Número da NF</legend>
 
                             <input 
@@ -110,9 +113,9 @@ export default function InventoryMovement() {
                                 onChange={e => setNf(e.target.value)}
                             />
                             
-                        </fieldset>
+                    </fieldset>
 
-                        <fieldset style={{ width: 280 }} >
+                    <fieldset style={{ width: 280 }} >
                         <legend>Data da NF</legend>
 
                             <input 
@@ -122,44 +125,48 @@ export default function InventoryMovement() {
                                 onChange={e => setDatanf(e.target.value)}
                             />
 
-                        </fieldset>
+                     </fieldset>
 
-                        <fieldset>
+                    <fieldset>
                         <legend>Imagem NF</legend>
 
                             <input id="img_nf" style={{ width: 450 }} type="file" name="arquivos" class="btn btn-success"  accept="image/png, image/jpeg" value={imagemnf} onChange={e => setImagemnf(e.target.value)} multiple /> 
                             
-                        </fieldset>
+                    </fieldset>
+
                     </div>
                         
-                        <div>
-                        <fieldset>
+                    <div>
+
+                    <fieldset>
                         <legend>Fornecedor</legend>
                         <select 
                             value={fornecedor}
                             onChange={e => setFornecedor(e.target.value)}
                         >
-                        <option value="" data-default disabled selected></option>
+                            <option value="" data-default disabled selected></option>
 
-                        <option                  
-                            value="FornecedorA"
-                            >Fornecedor A
-                        </option>
+                            <option                  
+                                value="FornecedorA"
+                                >Fornecedor A
+                            </option>
 
-                        <option
-                            value="FornecedorB"
-                            >Fornecedor B
-                        </option>
+                            <option
+                                value="FornecedorB"
+                                >Fornecedor B
+                            </option>
 
-                        <option
-                            value="FornecedorC"
-                            >Fornecedor C
-                        </option>    
+                            <option
+                                value="FornecedorC"
+                                >Fornecedor C
+                            </option>    
                         </select>
-                        </fieldset>
-                        </div>
+                    </fieldset>
+                        
+                    </div>
 
                         <button id="realizarMovimento" className="button" type="submit">Realizar Movimento</button>
+
                     </form>
 
 
@@ -168,9 +175,10 @@ export default function InventoryMovement() {
 
 
                     <div id="parteProduto">
+
                     <form onSubmit={handleInventoryTemporary}>
                     <div className="input-group">
-                        <fieldset>
+                    <fieldset>
                         <legend>Produto</legend>
                         <select 
                             value={produto}
@@ -194,9 +202,9 @@ export default function InventoryMovement() {
                         </option>  
 
                         </select>
-                        </fieldset>
+                    </fieldset>
 
-                        <fieldset style={{ width: 180 }} >
+                    <fieldset style={{ width: 180 }} >
                         <legend>Quantidade de Produtos</legend>
                         <input 
                             type="number" 
@@ -205,12 +213,12 @@ export default function InventoryMovement() {
                             value={quantidade}
                             onChange={e => setQuantidade(e.target.value)}
                         />
-                        </fieldset>
+                    </fieldset>
                         </div>
                         
 
-                        <div className="input-group">
-                        <fieldset>
+                    <div className="input-group">
+                    <fieldset>
                         <legend>Valor Total</legend>
                         <input 
                             type="number" 
@@ -218,9 +226,9 @@ export default function InventoryMovement() {
                             value={valor}
                             onChange={e => setValor(e.target.value)}
                         /> 
-                        </fieldset>
+                    </fieldset>
 
-                        <fieldset style={{ width: 220 }}>
+                    <fieldset style={{ width: 220 }}>
                         <legend>Lote</legend>
                         <input 
                             type="number"
@@ -229,9 +237,9 @@ export default function InventoryMovement() {
                             value={lote}
                             onChange={e => setLote(e.target.value)}
                         />
-                        </fieldset>
+                    </fieldset>
 
-                        <fieldset style={{ width: 220 }} >
+                    <fieldset style={{ width: 220 }} >
                         <legend>Validade</legend>
                             <input 
                                 type="date"
@@ -239,7 +247,7 @@ export default function InventoryMovement() {
                                 value={validade}
                                 onChange={e => setValidade(e.target.value)}
                             />
-                        </fieldset>
+                    </fieldset>
                         </div>
 
                         <div className="operacaoProduto">
@@ -247,10 +255,11 @@ export default function InventoryMovement() {
 
                             <button id="btn_cancel" >Cancelar Operação</button>
                         </div>
-                        </form>
+                    </form>
 
-                        <TableInventory></TableInventory>
-                        </div>
+                    <TableInventory></TableInventory>
+
+                    </div>
                 </section>
             </div>
         </div>

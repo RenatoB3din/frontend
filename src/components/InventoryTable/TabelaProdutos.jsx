@@ -13,7 +13,7 @@ export default props => {
         })
     })
 
-    const { nome, qntd, lote, validade, preco } = [produtos] 
+    const { nome, qntd, lote, validade, preco } = produtos
 
     function getLinhas() {
         return produtos.map((produto, i) => {
