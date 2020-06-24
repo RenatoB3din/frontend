@@ -21,7 +21,7 @@ button {
     cursor: pointer;
 }
 
-form input, select, option {
+form input, select, option, textarea {
     width: 100%;
     height: 60px;
     color: #333;

@@ -31,8 +31,12 @@
     width: 100%;
 }
 
-.movinventory-container .content input, select {
+.movinventory-container .content input, select, textarea {
     margin-top: 8px;
     margin-bottom: 8px;
+}
+
+#img_produto {
+    padding-top: 13px;
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import TableInventory from '../../components/InventoryTable/TabelaProdutos'
+// import TableInventory from '../../components/InventoryTable/TabelaProdutos'
 import api from '../../services/api';
 import './styles.css';
 
@@ -257,7 +257,7 @@ export default function InventoryMovement() {
                         </div>
                     </form>
 
-                    <TableInventory></TableInventory>
+                    {/* <TableInventory></TableInventory> */}
 
                     </div>
                 </section>
