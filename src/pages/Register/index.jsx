@@ -6,13 +6,17 @@ import './styles.css';
 
 import logoImg from '../../assets/logo.png';
 
+import Menu from '../../components/Header/Menu';
+import logo from '../../components/Header/logo.png';
+
+
 export default function Register() {
-    const [name, setName] = useState('');
-    const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
+    const [nome, setNome] = useState('');
+    const [login, setLogin] = useState('');
+    const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
-    const [perfil, setPerfil] = useState('');
+    const [cargo, setCargo] = useState('');
 
     const history = useHistory();
 
@@ -20,16 +24,16 @@ export default function Register() {
         e.preventDefault(); // Não atualiza a pág ao dar submit
 
         const data = {
-            name,
-            user,
-            password,
+            nome,
+            login,
+            senha,
             email,
             cpf,
-            perfil
+            cargo
         };
 
         try{
-            const response = await api.post('users', data);
+            const response = await api.post('usuario', data);
 
             alert(`Seu Usuário é: ${response.data.id}`);
 
@@ -39,7 +43,20 @@ export default function Register() {
          }
     }
 
+    let links = [
+        { label: 'Usuário', link: '/register', active: true },
+        { label: 'Fornecedor', link: '#about'},
+        { label: 'Produtos', link: '/novoproduto'},     
+        { label: 'Vendas', link: '#home' },
+        { label: 'Movimentação de Inventário', link: '/newinventory' },
+        { label: 'Relatórios', link: '#contact-us' },
+      ];
+
     return (
+        <div>
+        <header>
+            <Menu links={links} logo={logo} />
+        </header>
         <div className="register-container">
             <div className="content">
                 <section>
@@ -53,19 +70,19 @@ export default function Register() {
                 <form onSubmit={handleRegister}>
                     <input 
                         placeholder="Nome Completo"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
+                        value={nome}
+                        onChange={e => setNome(e.target.value)}
                     />
                     <input 
                         placeholder="Usuário"
-                        value={user}
-                        onChange={e => setUser(e.target.value)}
+                        value={login}
+                        onChange={e => setLogin(e.target.value)}
                     />
                     <input 
                         type="password" 
                         placeholder="Senha"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
+                        value={senha}
+                        onChange={e => setSenha(e.target.value)}
                     />
                     <input 
                         type="email" 
@@ -83,8 +100,8 @@ export default function Register() {
                         <select 
                             name="perfil" 
                             style={{ width: 180 }}
-                            value={perfil}
-                            onChange={e => setPerfil(e.target.value)}
+                            value={cargo}
+                            onChange={e => setCargo(e.target.value)}
                         >
                             <option value="" data-default disabled selected></option>
 
@@ -101,6 +118,7 @@ export default function Register() {
                     <button className="button" type="submit">Cadastrar</button>
                 </form>
             </div>
+        </div>
         </div>
     );
 }

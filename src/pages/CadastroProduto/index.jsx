@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 import './styles.css';
 
+import Menu from '../../components/Header/Menu';
+import logo from '../../components/Header/logo.png';
+
 export default function CadastroProduto() {
     const [cdgBarras, setCdgBarras] = useState('');
     const [nome, setNome] = useState('');
@@ -32,8 +35,20 @@ export default function CadastroProduto() {
          }
     }
 
+    let links = [
+        { label: 'Usuário', link: '/register' },
+        { label: 'Fornecedor', link: '#about'},
+        { label: 'Produtos', link: '/novoproduto', active: true},     
+        { label: 'Vendas', link: '#home' },
+        { label: 'Movimentação de Inventário', link: '/newinventory' },
+        { label: 'Relatórios', link: '#contact-us' },
+      ];
 
     return (
+        <div>
+        <header>
+            <Menu links={links} logo={logo} />
+        </header>
         <div className="movinventory-container">
         <div className="content">
             <section>
@@ -124,6 +139,7 @@ export default function CadastroProduto() {
                     
                 </form>
             </section>
+        </div>
         </div>
         </div>
     );

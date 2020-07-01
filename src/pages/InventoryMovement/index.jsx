@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 import './styles.css';
 
+import Menu from '../../components/Header/Menu';
+import logo from '../../components/Header/logo.png';
 
 export default function InventoryMovement() {
     const [nf, setNf] = useState('');                              
@@ -63,8 +65,20 @@ export default function InventoryMovement() {
          }
     }
 
+    let links = [
+        { label: 'Usuário', link: '/register' },
+        { label: 'Fornecedor', link: '#about'},
+        { label: 'Produtos', link: '/novoproduto'},     
+        { label: 'Vendas', link: '#home' },
+        { label: 'Movimentação de Inventário', link: '/newinventory', active: true },
+        { label: 'Relatórios', link: '#contact-us' },
+      ];
 
     return (
+        <div>
+        <header>
+            <Menu links={links} logo={logo} />
+        </header>
         <div className="movinventory-container">
         <div className="content">
             <section>
@@ -263,5 +277,6 @@ export default function InventoryMovement() {
                 </section>
             </div>
         </div>
+    </div>
     );
 }
