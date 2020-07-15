@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-
-import api from '../../services/api';
 import './styles.css';
 
 import Menu from '../../components/Header/Menu';
@@ -11,33 +9,60 @@ export default function CadastroProduto() {
     const [nome, setNome] = useState('');
     const [desc, setDesc] = useState('');
     const [unidade, setUnidade] = useState('');
-    const [fotoProduto, setFotoProduto] = useState('');
+    const [picture, setPicture] = useState(null);
+    const [imgData, setImgData] = useState(null);
     const [valorVenda, setValorVenda] = useState('');
 
+
+    const onChangePicture = e => {
+        if (e.target.files[0]) {
+            setPicture(URL.createObjectURL(e.target.files[0]));
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+            setImgData(reader.result);
+        });
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+    
     async function lidarComCadastroProduto(e) {
         e.preventDefault();
+ 
+        
+            const data = {
+                cdgBarras,
+                nome,
+                desc,
+                unidade,
+                valorVenda,
+                picture,
+                imgData
+            };
 
-        const data = {
-            cdgBarras,
-            nome,
-            desc,
-            unidade,
-            fotoProduto,
-            valorVenda
-        };
+            console.log(data);
 
-        try{
-            await api.post('cadastroProduto', data);               // POST na API com o ENDPOINT
+            
+        // try{
+            //     await api.post('cadastroProduto', data);               // POST na API com o ENDPOINT
+            
+            
+            //  } catch (err) {
+                //     alert('Erro no cadastro, tente novamente.');
+                //  }
+            }
+            
 
-
-         } catch (err) {
-            alert('Erro no cadastro, tente novamente.');
-         }
-    }
+    function Reset() {
+        setCdgBarras('');
+        setNome('');
+        setDesc('');
+        setUnidade('');
+        setValorVenda('');
+     }
 
     let links = [
         { label: 'Usuário', link: '/register' },
-        { label: 'Fornecedor', link: '#about'},
+        { label: 'Fornecedor', link: '/novofornecedor'},
         { label: 'Produtos', link: '/novoproduto', active: true},     
         { label: 'Vendas', link: '#home' },
         { label: 'Movimentação de Inventário', link: '/newinventory' },
@@ -49,7 +74,7 @@ export default function CadastroProduto() {
         <header>
             <Menu links={links} logo={logo} />
         </header>
-        <div className="movinventory-container">
+        <div className="novoproduto-container">
         <div className="content">
             <section>
                 <h1>CADASTRO DE PRODUTO</h1>
@@ -82,12 +107,10 @@ export default function CadastroProduto() {
 
                 <fieldset style={{ width: 220 }}>
                 <legend>Unidade</legend>
-                    <select 
+                    <select
                         value={unidade}
                         onChange={e => setUnidade(e.target.value)}
                     >
-                            <option value="" data-default disabled selected></option>
-
                             <option                  
                                 value="UnidadeA"
                                 >Unidade A
@@ -113,8 +136,7 @@ export default function CadastroProduto() {
                 <div className="input-group">
                     <fieldset>
                         <legend>Imagem Produto</legend>
-
-                            <input id="img_produto" style={{ width: 450 }} type="file" name="arquivos" class="btn btn-success"  accept="image/png, image/jpeg" value={fotoProduto} onChange={e => setFotoProduto(e.target.value)} multiple />      
+                            <input id="arquivo" style={{ width: 450 }} type="file"  className="btn btn-success" onChange={onChangePicture} />  
                     </fieldset>
 
 
@@ -129,12 +151,16 @@ export default function CadastroProduto() {
                     </fieldset> 
                 </div>
 
+            <div className="previewProfilePic" >
+                <img className="playerProfilePic_home_tile"  src={picture && picture}></img>
+              </div>
 
                     <div className="operacaoProduto">
                             <button id="btn_add" type="submit">Adicionar Produto</button>
 
-                            <button id="btn_cancel" >Cancelar Operação</button>
+                            <button id="btn_cancel" onClick={Reset} >Cancelar Operação</button>
                     </div>
+
                 </div>
                     
                 </form>

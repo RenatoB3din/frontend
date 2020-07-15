@@ -1,11 +1,11 @@
-.movinventory-container {
+.novoproduto-container {
     width: 100%;
     max-width: 1120px;
     height: 100vh;
     margin: 20px auto;
 }
 
-.movinventory-container .content {
+.novoproduto-container .content {
     width: 100%;
     padding: 96px;
     padding-top: 30px;
@@ -16,25 +16,70 @@
 }
 
 
-.movinventory-container .content section {
+.novoproduto-container .content section {
     width: 100%;
 }
 
-.movinventory-container .content section h1 {
+.novoproduto-container .content section h1 {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
     font-size: 32px;
 }
 
-.movinventory-container .content form, fieldset {
+.novoproduto-container .content form, fieldset {
     width: 100%;
 }
 
-.movinventory-container .content input, select, textarea {
+.novoproduto-container .content input, select, textarea {
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+.novoproduto-container .content form .input-group{
+    display: flex;
+    width: 100%;
+}
+
+.novoproduto-container .content form .input-group input + input{
+    margin-left: 8px
+}
+
+.novoproduto-container .content form .input-group fieldset + fieldset{
+    margin-left: 8px
+}
+
+.novoproduto-container .content form .input-group fieldset + fieldset + fieldset{
+    margin-left: 8px
+}
+
+.novoproduto-container .content form .input-group fieldset{
+    border: 0;
+    margin-left: 8px;
+}
+
+.novoproduto-container .content form .operacaoProduto{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.novoproduto-container .content form .operacaoProduto button{
+    height: 40px;
+    margin-left: 8px;
+}
+
+.novoproduto-container .content form fieldset{
+    border: 0;
+    margin-left: 8px;
+}
+
+h2 {
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
 
 #img_produto {
     padding-top: 13px;

@@ -67,7 +67,7 @@ export default function InventoryMovement() {
 
     let links = [
         { label: 'Usuário', link: '/register' },
-        { label: 'Fornecedor', link: '#about'},
+        { label: 'Fornecedor', link: '/novofornecedor'},
         { label: 'Produtos', link: '/novoproduto'},     
         { label: 'Vendas', link: '#home' },
         { label: 'Movimentação de Inventário', link: '/newinventory', active: true },
