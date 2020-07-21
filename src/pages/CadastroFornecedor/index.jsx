@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import api from '../../services/api';
+// import api from '../../services/api';
 import apiexterna from '../../services/apiexterna';
 import './styles.css';
 
@@ -51,15 +51,14 @@ export default function CadastroFornecedor() {
                     const fetchData = async () => {
                     const result = await apiexterna.get(url);
                 
-                setLogradouro(result.data.logradouro);
-                setComplemento(result.data.complemento);
-                setBairro(result.data.bairro);
-                setLocalidade(result.data.localidade);
-                setUf(result.data.uf);  
-                setCep(result.data.cep);  
-                // console.log(result.data)
-            };
-                
+                    setLogradouro(result.data.logradouro);
+                    setComplemento(result.data.complemento);
+                    setBairro(result.data.bairro);
+                    setLocalidade(result.data.localidade);
+                    setUf(result.data.uf);  
+                    setCep(result.data.cep);  
+                    // console.log(result.data)
+                };
             fetchData();
             }}, [url]);
         

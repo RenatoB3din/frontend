@@ -11,33 +11,45 @@ import logo from '../../components/Header/logo.png';
 
 
 export default function Register() {
-    const [nome, setNome] = useState('');
+    const [nomeCompleto, setNomeCompleto] = useState('');
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
     const [email, setEmail] = useState('');
     const [cpf, setCpf] = useState('');
-    const [cargo, setCargo] = useState('');
+    const [idPerfil, setIdPerfil] = useState('');
 
     const history = useHistory();
+
+    function reset() {
+        setNomeCompleto('');
+        setLogin('');
+        setSenha('');
+        setEmail('');
+        setCpf('');
+        setIdPerfil('');
+     }
 
     async function handleRegister(e) {
         e.preventDefault(); // Não atualiza a pág ao dar submit
 
         const data = {
-            nome,
+            nomeCompleto,
             login,
             senha,
             email,
             cpf,
-            cargo
+            perfil: {idPerfil}
         };
 
         try{
-            const response = await api.post('usuario', data);
+            const response = await api.post('usuario/cadastrar', data);
 
-            alert(`Seu Usuário é: ${response.data.id}`);
+            console.log(`Seu Usuário é: ${response.data.id}`);
 
-            history.push('/');
+
+            history.push('/register');
+
+            reset();
          } catch (err) {
             alert('Erro no cadastro, tente novamente.');
          }
@@ -70,8 +82,8 @@ export default function Register() {
                 <form onSubmit={handleRegister}>
                     <input 
                         placeholder="Nome Completo"
-                        value={nome}
-                        onChange={e => setNome(e.target.value)}
+                        value={nomeCompleto}
+                        onChange={e => setNomeCompleto(e.target.value)}
                     />
                     <input 
                         placeholder="Usuário"
@@ -100,18 +112,23 @@ export default function Register() {
                         <select 
                             name="perfil" 
                             style={{ width: 180 }}
-                            value={cargo}
-                            onChange={e => setCargo(e.target.value)}
+                            value={idPerfil}
+                            onChange={e => setIdPerfil(e.target.value)}
                         >
-                            <option value="" data-default disabled selected></option>
 
-                            <option                  
-                                value="Vendedor"
-                            >Vendedor</option>
+                            <option value="" disabled ></option>
 
                             <option
-                                value="Admin"
+                                value="1"
                             >Admin</option>
+
+                            <option                  
+                                value="2"
+                            >Gerente</option>
+
+                            <option                  
+                                value="3"
+                            >Vendedor</option>
                         </select>
                     </div>
 

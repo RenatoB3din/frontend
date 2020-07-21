@@ -152,7 +152,7 @@ export default function CadastroProduto() {
                 </div>
 
             <div className="previewProfilePic" >
-                <img className="playerProfilePic_home_tile"  src={picture && picture}></img>
+                <img className="playerProfilePic_home_tile" alt="teste"  src={picture && picture}></img>
               </div>
 
                     <div className="operacaoProduto">
